@@ -153,15 +153,15 @@ const WheelComponent = ({
         const value = segments[key];
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(centerX, centerY + 20);
+        ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, size, lastAngle, angle, false);
-        ctx.lineTo(centerX, centerY + 20);
+        ctx.lineTo(centerX, centerY);
         ctx.closePath();
         ctx.fillStyle = segColors[key];
         ctx.fill();
         ctx.stroke();
         ctx.save();
-        ctx.translate(centerX, centerY + 20);
+        ctx.translate(centerX, centerY);
         ctx.rotate((lastAngle + angle) / 2);
         ctx.fillStyle = contrastColor || "white";
         ctx.font = "bold 1em " + fontFamily;
