@@ -1,0 +1,19 @@
+/* .canvas{
+
+} */
+
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust based on your layout */
+}
+
+#zoompoint {
+  transition: transform 0.5s ease-in-out;
+}
+
+.spinner:hover #zoompoint {
+  transform: scale(2.5); /* Adjust the scale value as needed */
+}
