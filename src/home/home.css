@@ -1,0 +1,36 @@
+.content{
+    display: flex;
+height: 600px;
+    align-items: center;
+    
+}
+.fist{
+    flex:1;
+    height: 600px;
+    background-color: red;
+}
+.second{
+    flex:4;
+    height: 600px;
+    background-color: green;
+}
+.third{
+    flex:1.5;
+    height: 600px;
+    background-color: yellow;
+
+}
+
+.second{
+    display: flex;
+    justify-content: space-between;
+}
+.second-left{
+    flex: 1.7;
+    background-color: rgb(74, 55, 55);
+}
+.second-right{
+    flex: 3;
+    background-color: white;
+}
+

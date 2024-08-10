@@ -149,10 +149,10 @@ li{
 }
 @keyframes stop-rotate {
     from {
-        transform: rotate(360deg); /* This should be the final state of the rotation animation */
+        transform: rotate(0deg); /* This should be the final state of the rotation animation */
     }
     to {
-        transform: rotate(360deg); /* Keep the final state of the rotation animation */
+        transform: rotate(270deg); /* Keep the final state of the rotation animation */
     }
 }
 

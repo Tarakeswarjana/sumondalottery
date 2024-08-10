@@ -4,6 +4,9 @@ import Spinner from './Coponents/Spinner';
 import Wheel from './CustomSpinner/Wheel';
 import TestWheel from './TestWheel/TestWheel';
 import CustomWheel2 from './customwheel2/CustomWheel2';
+import CustomWheel3 from './customWheel3/customWheel3';
+import Home from './home/Home';
+import SlotMechine from './SlotMechine/DemoSlot';
 
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
       </div> */}
       {/* <TestWheel /> */}
 
-      <CustomWheel2 />
+      {/* <CustomWheel2 /> */}
+      {/* <CustomWheel3 stopElement="h" /> */}
+      {/* <SlotMechine /> */}
+      <Home />
 
     </div>
   );

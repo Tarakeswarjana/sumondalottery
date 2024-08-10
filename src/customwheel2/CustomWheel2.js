@@ -8,7 +8,10 @@ function CustomWheel2() {
         setrotateClass('circle start-rotate')
         setTimeout(() => {
             setrotateClass('circle start-rotate stop-rotate')
-        }, 2000)
+        }, 3000)
+    }
+    const handEndSpinn = () => {
+
     }
 
     return (
