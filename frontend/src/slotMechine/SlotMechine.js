@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './slotMechine.css'; // Make sure to include the CSS here
 import SlotCounter from 'react-slot-counter';
+const audio = require("../../src/assets/wheel-spin-click-slow-down-101152.mp3")
 const SlotMechine = ({ duration, endNumbers }) => {
 
     const [isspinn, setisSpinn] = useState(false)
@@ -19,10 +20,14 @@ const SlotMechine = ({ duration, endNumbers }) => {
     const counterRef = useRef(null);
 
     const startAnimation = () => {
+        var audio1 = new Audio(audio);
+        audio1.play();
+
         setisSpinn(true)
-        // setTimeout(() => {
-        //     setisSpinn(false)
-        // }, duration * 1000)
+        setTimeout(() => {
+
+            audio1.pause();
+        }, duration * 1000)
 
         if (counterRef.current) {
             counterRef.current.startAnimation();

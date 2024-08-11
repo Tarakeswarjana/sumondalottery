@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./customwhell2.css";
 import logo from "../images/logo.jpg";
 import SlotMechine from "../slotMechine/SlotMechine";
+const audio = require("../../src/assets/bicycle-wheel-spinning-49716-[AudioTrimmer.com].mp3")
+
 
 function CustomWheel2() {
   const [rotationAngleNumber, setRotationAngleNumber] = useState(0);
@@ -18,6 +20,9 @@ function CustomWheel2() {
   const alphabetDeg = 360 / letters.length;
 
   const handleRotate = () => {
+    var audio1 = new Audio(audio);
+
+    audio1.play();
     const num = parseInt(inputValueNumber);
     const letterIndex = letters.indexOf(inputValueLetter.toUpperCase());
 
@@ -54,6 +59,7 @@ function CustomWheel2() {
       setTimeout(() => {
         numberWheelStyle.transition = `none`;
         letterWheelStyle.transition = `none`;
+        audio1.pause();
       }, 60000); // 60 second
     } else {
       alert(
@@ -65,11 +71,7 @@ function CustomWheel2() {
 
   //for slot Mechine 
 
-
   const [endval, setEndval] = useState('')
-
-
-
   const duration = 2
 
 
@@ -150,7 +152,7 @@ function CustomWheel2() {
         <div className="bg-slate-800 h-auto w-2/3">
           <div>   <SlotMechine duration={duration} endNumbers={endval} setvalueStart />
 
-            <label>
+            <label >
               endNo
               <input type="text" value={endval} onChange={(e) => { setEndval(e.target.value) }}></input>
             </label>
