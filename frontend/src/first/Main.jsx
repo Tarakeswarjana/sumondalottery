@@ -1,8 +1,8 @@
 import React from "react";
 import "./Main.css";
 import middle from "../images/MIDDLE.png";
-import first from "../images/first.png"
-import logo from "../images/logo.jpg"
+import first from "../images/first.png";
+import logo from "../images/logo.jpg";
 import CustomWheel2 from "../customwheel2/CustomWheel2";
 
 const main = () => {
@@ -39,17 +39,17 @@ const main = () => {
           </div>
         </div>
         <div className="w-9/12 border border-2 h-[100%]">
-        <CustomWheel2 />
+          <CustomWheel2 />
         </div>
 
         <div className="curve w-2/12 bg-red-600 ml-1 flex flex-col justify-center items-center">
-        <img src={first} className="h-16 w-16" alt="first" />
-        <p className="text-teal-200 font-extrabold text-5xl">prize</p>
-        <p className="prize font-bold text-3xl ">ON</p>
-        <p className="prize font-bold text-3xl ">5</p>
-        <p className="prize font-bold text-3xl ">DIGITS</p>
-        <p className="prize font-bold text-3xl ">WITH</p>
-        <p className="prize font-bold text-3xl ">SERIES</p>
+          <img src={first} className="h-16 w-16" alt="first" />
+          <p className="text-teal-200 font-extrabold text-5xl">prize</p>
+          <p className="prize font-bold text-3xl ">ON</p>
+          <p className="prize font-bold text-3xl ">5</p>
+          <p className="prize font-bold text-3xl ">DIGITS</p>
+          <p className="prize font-bold text-3xl ">WITH</p>
+          <p className="prize font-bold text-3xl ">SERIES</p>
         </div>
         <div className="w-[50px] h-[100%] flex justify-between items-center ml-2 ">
           <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold">
@@ -66,7 +66,7 @@ const main = () => {
       <div className="flex justify-around pt-4">
         <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-64 h-12">
           <p className="w-full flex justify-center items-center bg-red-700 text-white rounded rounded-full font-bold">
-           DRAW DATE - 11.08.2024
+            DRAW DATE - 11.08.2024
           </p>
         </div>
         <div className="">

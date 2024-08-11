@@ -1,94 +1,91 @@
-
-.circle{
-    width: 202px;
-    height: 202px;
-    border: 1px solid black;
-    position: relative;
-    padding: 4px;
-    margin: 1em auto;
-    border-radius: 50%;
-    list-style: none;
-    overflow: hidden;
+.circle {
+  width: 202px;
+  height: 202px;
+  border: 1px solid black;
+  position: relative;
+  padding: 4px;
+  margin: 1em auto;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
 }
-.okk{
-    width:192px;
-    height:192px;
-    border:1px solid red;
-    position:relative;
-    padding: 0;
-    margin: 0em auto;
-    border-radius: 50%;
-    list-style: none;
-    overflow: hidden;
-}
-
-
-li{
-    overflow: hidden;
-    position: absolute;
-    top:0;
-    right: 0;
-    width: 50%;
-    height: 50%;
-    transform-origin: 0% 100%;
-    border-left: 1px solid red;
-
-}
-.text{
-    position: absolute;
-    left:-90%;
-    width:200%;
-    height: 200%;
-    text-align: center;
-    display: block;
-    transform: skewY(60deg) rotate(20deg);
-    padding-top: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
+.okk {
+  width: 192px;
+  height: 192px;
+  border: 1px solid red;
+  position: relative;
+  padding: 0;
+  margin: 0em auto;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
 }
 
-.arrow{
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 31px solid red;
-    position: absolute;
-    left: 49%;
-    top: 2px;
-    z-index: 1;
+li {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+  border-left: 1px solid red;
 }
-.letter_Arrow{
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 31px solid red;
-    position: absolute;
-    left: 49%;
-    top: 2px;
-    z-index: 1;
+.text {
+  position: absolute;
+  left: -90%;
+  width: 200%;
+  height: 200%;
+  text-align: center;
+  display: block;
+  transform: skewY(60deg) rotate(20deg);
+  padding-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 31px solid red;
+  position: absolute;
+  left: 49%;
+  top: 2px;
+  z-index: 1;
+}
+.letter_Arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 31px solid red;
+  position: absolute;
+  left: 49%;
+  top: 2px;
+  z-index: 1;
 }
 hr {
-    height: 7px;
-    width: 26px;
-    left: 48%;
-    position: absolute;
+  height: 7px;
+  width: 26px;
+  left: 48%;
+  position: absolute;
 }
 
-.spin-button{
-    position:absolute;
-    left:40%;
-    width:120px;
-    height: 40px;
-    background-color: blue;
-    border-radius: 30px;
-    margin-top: 20px;
-    cursor: pointer;
-    outline: none;
-    color: white;
-    font-size: 18px;
+.spin-button {
+  position: absolute;
+  left: 40%;
+  width: 120px;
+  height: 40px;
+  background-color: blue;
+  border-radius: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-size: 18px;
 }
 
 /* .start-rotate{
@@ -115,51 +112,52 @@ hr {
     animation-play-state: paused;
 } */
 
-
-
 .circle {
-    transition: transform 3s cubic-bezier(0.33, 1, 0.68, 1); /* Smooth transition */
+  transition: transform 3s cubic-bezier(0.33, 1, 0.68, 1); /* Smooth transition */
 }
 
 /* Letter Circle Rotation */
 .letter-circle {
-    width:12em;
-    height:12em;
-    border:1px solid black;
-    position:relative;
-    padding: 0;
-    margin: 1em auto;
-    border-radius: 50%;
-    list-style: none;
-    overflow: hidden;
+  width: 12em;
+  height: 12em;
+  border: 1px solid black;
+  position: relative;
+  padding: 0;
+  margin: 1em auto;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
 }
 
 .letter-circle li {
-    overflow: hidden;
-    position: absolute;
-    top:0;
-    right: 0;
-    width: 50%;
-    height: 50%;
-    transform-origin: 0% 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
 }
 .letter-text {
-    position: absolute;
-    left: -89%;
-    width: 200%;
-    height: 200%;
-    text-align: center;
-    display: block;
-    transform: skewY(60deg) rotate(14deg);
-    padding-top: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 33px;
+  position: absolute;
+  left: -89%;
+  width: 200%;
+  height: 200%;
+  text-align: center;
+  display: block;
+  transform: skewY(60deg) rotate(14deg);
+  padding-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 33px;
 }
 
 /* Use this transition for smooth rotation */
 .letter-circle {
-    transition: transform 3s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: transform 3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-
+.zoom {
+  transform: scale(1.5); /* Adjust scale as needed */
+  transition: transform 1s ease-in-out; /* Smooth transition */
+}

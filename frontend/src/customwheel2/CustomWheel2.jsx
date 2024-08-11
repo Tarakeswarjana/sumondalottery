@@ -13,6 +13,10 @@ function CustomWheel2() {
     29, 30, 31, 32, 33,
   ];
   const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P"];
+
+  const [zoomNumber, setZoomNumber] = useState(false);
+  const [zoomLetter, setZoomLetter] = useState(false);
+
   const degree = 360 / numbers.length;
   const alphabetDeg = 360 / letters.length;
 
@@ -38,30 +42,37 @@ function CustomWheel2() {
       const numberWheelStyle = document.querySelector(".circle").style;
       const letterWheelStyle = document.querySelector(".letter-circle").style;
 
-    //  letterWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
-    //  numberWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
-     numberWheelStyle.transition = `transform 20s cubic-bezier(0.1, 1, 0.2, 0.9)`;
-     letterWheelStyle.transition = `transform 20s cubic-bezier(0.1, 1, 0.2, 0.9)`;
+      //  letterWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
+      //  numberWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
+      numberWheelStyle.transition = `transform 20s cubic-bezier(0.1, 1, 0.2, 0.9)`;
+      letterWheelStyle.transition = `transform 20s cubic-bezier(0.1, 1, 0.2, 0.9)`;
 
-     setRotationAngleNumber(
-       rotationAngleNumber + targetAngleNumber + randomFullRotations
-     );
-     setRotationAngleLetter(
-       rotationAngleLetter + targetAngleLetter + randomFullRotations
-     );
+      setRotationAngleNumber(
+        rotationAngleNumber + targetAngleNumber + randomFullRotations
+      );
+      setRotationAngleLetter(
+        rotationAngleLetter + targetAngleLetter + randomFullRotations
+      );
 
-     setTimeout(() => {
-       numberWheelStyle.transition = `none`;
-       letterWheelStyle.transition = `none`;
-     }, 60000); // 60 second
+      setTimeout(() => {
+        numberWheelStyle.transition = `none`;
+        letterWheelStyle.transition = `none`;
+
+         // Trigger zoom effects sequentially
+         setZoomNumber(true);
+
+         setTimeout(() => {
+           setZoomLetter(true);
+         }, 2000);
+      }, 60000); // 60 second
+
+
     } else {
       alert(
         "Please enter a valid number (10-33) and letter (A, B, C, D, G, M, N, O, P)"
       );
     }
   };
-
-
 
   return (
     <div className="h-full">
@@ -136,7 +147,7 @@ function CustomWheel2() {
           </div>
         </div>
 
-        <div className="bg-slate-800 h-auto w-2/3">asdasdsa</div>
+        <div className="bg-slate-800 h-auto w-2/3">my new name</div>
       </div>
 
       {/* Input Fields */}
