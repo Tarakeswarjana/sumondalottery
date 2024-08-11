@@ -4,6 +4,7 @@ import Spinner from './Coponents/Spinner';
 import Wheel from './CustomSpinner/Wheel';
 import TestWheel from './TestWheel/TestWheel';
 import CustomWheel2 from './customwheel2/CustomWheel2';
+import Main from './first/Main';
 
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
       </div> */}
       {/* <TestWheel /> */}
 
-      <CustomWheel2 />
-
+      {/* <CustomWheel2 /> */}
+<Main />
     </div>
   );
 }

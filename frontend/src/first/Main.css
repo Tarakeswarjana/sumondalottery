@@ -1,0 +1,25 @@
+.main_div {
+    background-image: url("../images/background.jpg");
+    height: 100vh;
+    width: 100%;
+}
+.pxwell {
+    -webkit-text-stroke: 2px #fff;
+}
+.lottery {
+    height: 60px;
+    width: 500px;
+}
+.prize {
+    -webkit-text-stroke: 1px #fff;
+}
+
+.curve {
+   border-radius: 50% 50% 47% 53% / 52% 54% 46% 48% ;
+   width: 159px;
+}
+.logo {
+    height: 15px;
+    width: 15px;
+    mix-blend-mode: color-burn;
+}
