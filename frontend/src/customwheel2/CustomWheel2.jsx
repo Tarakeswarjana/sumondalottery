@@ -38,7 +38,6 @@ function CustomWheel2() {
       const numberWheelStyle = document.querySelector(".circle").style;
       const letterWheelStyle = document.querySelector(".letter-circle").style;
 
-     // Phase 1: Fast spin for 30 seconds
     //  letterWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
     //  numberWheelStyle.transition = `transform 20s cubic-bezier(0.2, 0.9, 0.3, 1)`;
      numberWheelStyle.transition = `transform 20s cubic-bezier(0.1, 1, 0.2, 0.9)`;
@@ -51,11 +50,10 @@ function CustomWheel2() {
        rotationAngleLetter + targetAngleLetter + randomFullRotations
      );
 
-     // Final cleanup after the full spin duration
      setTimeout(() => {
        numberWheelStyle.transition = `none`;
        letterWheelStyle.transition = `none`;
-     }, 60000); // 60 seconds
+     }, 60000); // 60 second
     } else {
       alert(
         "Please enter a valid number (10-33) and letter (A, B, C, D, G, M, N, O, P)"
