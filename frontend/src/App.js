@@ -6,6 +6,7 @@ import TestWheel from './TestWheel/TestWheel';
 import CustomWheel2 from './customwheel2/CustomWheel2';
 
 
+const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P", "I", "W"];
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,8 @@ function App() {
       </div> */}
       {/* <TestWheel /> */}
 
-      <CustomWheel2 />
+      <CustomWheel2 rotateTime={2} segments={letters} endResult={'i'} />
+
 
     </div>
   );

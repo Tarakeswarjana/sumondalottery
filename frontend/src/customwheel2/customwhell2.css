@@ -1,4 +1,4 @@
-
+/* 
 li:first-child .text{
     background-color: violet;
 }
@@ -120,7 +120,7 @@ li{
     left: 16%;
     top: -17px;
     z-index: 2;
-}
+}*/
 .letter_Arrow{
     width: 0;
     height: 0;
@@ -128,7 +128,7 @@ li{
     border-right: 15px solid transparent;
     border-top: 50px solid black;
     position:absolute;
-    left: 46%;
+    left: 11%;
     top:-17px;
     z-index: 1;
 }
@@ -145,7 +145,7 @@ li{
     outline: none;
     color: white;
     font-size: 18px;
-}
+} 
 
 /* .start-rotate{
     animation: start-rotate 0.5s linear infinite;
@@ -193,6 +193,7 @@ li{
 .letter-circle li {
     overflow: hidden;
     position: absolute;
+    border: 1px solid;
     top:0;
     right: 0;
     width: 50%;
@@ -200,7 +201,7 @@ li{
     transform-origin: 0% 100%;
 }
 
-li:first-child .letter-text{
+/* li:first-child .letter-text{
     background-color: violet;
 }
 li:nth-child(2) .letter-text {
@@ -235,10 +236,10 @@ li:nth-child(11) .letter-text {
 }
 li:nth-child(12) .letter-text {
     background-color:pink ;
-}
+} */
 
 /* Rotations for 9 letters evenly spaced around the circle */
-.letter-circle li:first-child { transform: rotate(0deg) skewY(-60deg); }
+/* .letter-circle li:first-child { transform: rotate(0deg) skewY(-60deg); }
 .letter-circle li:nth-child(2) { transform: rotate(40deg) skewY(-60deg); }
 .letter-circle li:nth-child(3) { transform: rotate(80deg) skewY(-60deg); }
 .letter-circle li:nth-child(4) { transform: rotate(120deg) skewY(-60deg); }
@@ -247,7 +248,7 @@ li:nth-child(12) .letter-text {
 .letter-circle li:nth-child(7) { transform: rotate(240deg) skewY(-60deg); }
 .letter-circle li:nth-child(8) { transform: rotate(280deg) skewY(-60deg); }
 .letter-circle li:nth-child(9) { transform: rotate(320deg) skewY(-60deg); }
-.letter-circle li:nth-child(10) { transform: rotate(360deg) skewY(-60deg); }
+.letter-circle li:nth-child(10) { transform: rotate(360deg) skewY(-60deg); } */
 
 .letter-text {
     position: absolute;

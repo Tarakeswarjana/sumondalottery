@@ -149,33 +149,90 @@
 // export default CustomWheel2;
 
 import React, { useState } from "react";
+import styled from 'styled-components';
 import "./customwhell2.css";
+// const audio = require('../assets/wheel-spin-click-slow-down-101152.mp3')
+const audio = require('../assets/bicycle-wheel-spinning-49716-[AudioTrimmer.com].mp3')
 
-function CustomWheel2() {
-  const [rotationAngleNumber, setRotationAngleNumber] = useState(0);
+
+
+function CustomWheel2({ rotateTime, segments, endResult }) {
+
+
+  // const LetterCircle = styled.ul`
+  //   list-style: none;
+  //   padding: 0;
+  //   margin: 0;
+  //   position: relative;
+  //   width: 300px;
+  //   height: 300px;
+  //   border-radius: 50%;
+  //   border: 2px solid #333;
+  //   overflow: hidden;
+  //   transform: rotate(${props => props.rotationAngle}deg);
+  //   transition: transform ${props => props.rotateTime}s ease-in-out;
+  // `;
+
+  const LetterItem = styled.li`
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transform-origin: 50% 100%;
+    transform: rotate(${props => props.rotation}deg) skewY(-60deg);  `;
+
+  const LetterText = styled.div`
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+  `;
+
+
+
+
+
+
   const [rotationAngleLetter, setRotationAngleLetter] = useState(0);
-  const [inputValueNumber, setInputValueNumber] = useState("");
-  const [inputValueLetter, setInputValueLetter] = useState("");
 
-  const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P"];
+  //  const[ind,setind]=useState(-1)
+  const letters = segments
 
   const handleRotate = () => {
-    const num = parseInt(inputValueNumber);
-    const letterIndex = letters.indexOf(inputValueLetter.toUpperCase());
 
-    if (num >= 1 && num <= 12 && letterIndex !== -1) {
-      const anglePerItemNumber = 360 / 12;
+    const letterIndex = letters.indexOf(endResult.toUpperCase());
+    console.log(letterIndex, "llll")
+
+    if (letterIndex !== -1) {
+
       const anglePerItemLetter = 360 / letters.length;
 
-      const randomFullRotations = Math.floor(Math.random() * 5 + 3) * 360;
-      const targetAngleNumber =
-        (12 - num + 1) * anglePerItemNumber + randomFullRotations;
-      const targetAngleLetter =
-        (letters.length - letterIndex) * anglePerItemLetter +
-        randomFullRotations;
+      const randomFullRotations = rotateTime * 360;
 
-      setRotationAngleNumber(rotationAngleNumber + targetAngleNumber);
-      setRotationAngleLetter(rotationAngleLetter + targetAngleLetter);
+      // const targetAngleLetter =
+      //   (letters.length - letterIndex) * anglePerItemLetter +
+      //   randomFullRotations;
+
+      const targetAngleLetter = randomFullRotations + (anglePerItemLetter * letterIndex)
+
+
+
+      // setRotationAngleLetter(rotationAngleLetter + targetAngleLetter);
+      console.log(Math.floor(rotationAngleLetter + targetAngleLetter), "kkk")
+      // setRotationAngleLetter(rotationAngleLetter + targetAngleLetter + anglePerItemLetter);
+      setRotationAngleLetter(Math.floor(rotationAngleLetter + targetAngleLetter))
+      var audio1 = new Audio(audio);
+      console.log(audio1)
+      audio1.play()
+      setTimeout(() => {
+        audio1.pause()
+
+      }, Number(rotateTime * 1000))
     } else {
       alert(
         "Please enter a valid number (1-12) and letter (A, B, C, D, G, M, N, O, P)"
@@ -186,33 +243,18 @@ function CustomWheel2() {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <div>
-          <div className="arrow"></div>
 
-          {/* Number Circle */}
-          <ul
-            className="circle"
-            style={{ transform: `rotate(${rotationAngleNumber}deg)` }}
-          >
-            {Array.from({ length: 12 }, (_, i) => (
-              <li key={i}>
-                <div className="text" contentEditable="true" spellCheck="false">
-                  {i + 1}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
 
         <div>
           <div className="letter_Arrow"></div>
           {/* Letter Circle */}
           <ul
             className="letter-circle"
-            style={{ transform: `rotate(${rotationAngleLetter}deg)` }}
+            style={{ transform: `rotate(${rotationAngleLetter}deg)`, transition: `transform ${rotateTime}s ease-in-out`, }}
           >
             {letters.map((letter, i) => (
-              <li key={i}>
+
+              <LetterItem rotation={`${i * (360 / letters.length)}`} >
                 <div
                   className="letter-text"
                   contentEditable="true"
@@ -220,25 +262,13 @@ function CustomWheel2() {
                 >
                   {letter}
                 </div>
-              </li>
+              </LetterItem>
             ))}
           </ul>
         </div>
       </div>
 
-      {/* Input Fields */}
-      <input
-        type="number"
-        value={inputValueNumber}
-        onChange={(e) => setInputValueNumber(e.target.value)}
-        placeholder="Enter number (1-12)"
-      />
-      <input
-        type="text"
-        value={inputValueLetter}
-        onChange={(e) => setInputValueLetter(e.target.value)}
-        placeholder="Enter letter (A, B, C, D, G, M, N, O, P)"
-      />
+
       <button className="spin-button" onClick={handleRotate}>
         Spin
       </button>
