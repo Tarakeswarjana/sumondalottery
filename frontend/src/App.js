@@ -4,20 +4,15 @@ import Spinner from './Coponents/Spinner';
 import Wheel from './CustomSpinner/Wheel';
 import TestWheel from './TestWheel/TestWheel';
 import CustomWheel2 from './customwheel2/CustomWheel2';
+import Main from './first/Main';
 
 
 const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P", "I", "W"];
 function App() {
   return (
     <div className="App">
-      {/* <Spinner /> */}
-      {/* <div className='spinner'>
-        <Wheel />
-      </div> */}
-      {/* <TestWheel /> */}
 
-      <CustomWheel2 rotateTime={2} segments={letters} endResult={'i'} />
-
+      <Main />
 
     </div>
   );
