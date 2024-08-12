@@ -1,25 +1,61 @@
 .main_div {
-    background-image: url("../images/background.jpg");
-    height: 100vh;
-    width: 100%;
+  background-image: url("../images/background.jpg");
+  height: 100vh;
+  width: 100%;
 }
 .pxwell {
-    -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 2px #fff;
 }
 .lottery {
-    height: 60px;
-    width: 500px;
+  height: 60px;
+  width: 500px;
 }
 .prize {
-    -webkit-text-stroke: 1px #fff;
+  -webkit-text-stroke: 1px #fff;
 }
 
 .curve {
-   border-radius: 50% 50% 47% 53% / 52% 54% 46% 48% ;
-   width: 159px;
+  border-radius: 50% 50% 47% 53% / 52% 54% 46% 48%;
+  width: 159px;
 }
 .logo {
-    height: 15px;
-    width: 15px;
-    mix-blend-mode: color-burn;
+  height: 15px;
+  width: 15px;
+  mix-blend-mode: color-burn;
+}
+.word {
+  width: 90%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 45%;
+  text-align: center;
+}
+.word span {
+  display: inline-block;
+  position: relative;
+  transform: translateY(-400px);
+  animation: fall 2s forwards; 
+  animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1); 
+}
+
+@keyframes fall {
+  100% {
+    transform: translateY(0);
+  }
+}
+.word span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.word span:nth-child(3) {
+  animation-delay: 1.0s;
+}
+.word span:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.word span:nth-child(5) {
+  animation-delay: 2.0s;
+}
+.word span:nth-child(6) {
+  animation-delay: 2.5s;
 }

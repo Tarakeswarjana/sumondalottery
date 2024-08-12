@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./customwhell2.css";
-import logo from "../images/logo.jpg";
+import SlotMechine from "../slotMechine/SlotMechine";
+const audio = require("../../src/assets/bicycle-wheel-spinning-49716-[AudioTrimmer.com].mp3")
+
 
 function CustomWheel2() {
   const [rotationAngleNumber, setRotationAngleNumber] = useState(0);
@@ -14,13 +16,13 @@ function CustomWheel2() {
   ];
   const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P"];
 
-  const [zoomNumber, setZoomNumber] = useState(false);
-  const [zoomLetter, setZoomLetter] = useState(false);
-
   const degree = 360 / numbers.length;
   const alphabetDeg = 360 / letters.length;
 
   const handleRotate = () => {
+    var audio1 = new Audio(audio);
+
+    audio1.play();
     const num = parseInt(inputValueNumber);
     const letterIndex = letters.indexOf(inputValueLetter.toUpperCase());
 
@@ -57,22 +59,22 @@ function CustomWheel2() {
       setTimeout(() => {
         numberWheelStyle.transition = `none`;
         letterWheelStyle.transition = `none`;
-
-         // Trigger zoom effects sequentially
-         setZoomNumber(true);
-
-         setTimeout(() => {
-           setZoomLetter(true);
-         }, 2000);
+        audio1.pause();
       }, 60000); // 60 second
-
-
     } else {
       alert(
         "Please enter a valid number (10-33) and letter (A, B, C, D, G, M, N, O, P)"
       );
     }
   };
+
+
+  //for slot Mechine 
+
+  const [endval, setEndval] = useState('')
+  const duration = 2
+
+
 
   return (
     <div className="h-full">
@@ -147,7 +149,18 @@ function CustomWheel2() {
           </div>
         </div>
 
-        <div className="bg-slate-800 h-auto w-2/3">my new name</div>
+        <div className="bg-slate-800 h-auto w-2/3">
+          <div>   <SlotMechine duration={duration} endNumbers={endval} setvalueStart />
+
+            <label >
+              endNo
+              <input type="text" value={endval} onChange={(e) => { setEndval(e.target.value) }}></input>
+            </label>
+
+          </div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
 
       {/* Input Fields */}
