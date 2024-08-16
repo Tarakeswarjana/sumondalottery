@@ -18,7 +18,10 @@ const SecoundPrizeHome = () => {
           </div>
         )}
         <div className="nextDraw">LIVE NEXT DRAW</div>
-        <div><span>2</span><sub>nd</sub> <span>Prize</span></div>
+        <div>
+          <span>2</span>
+          <sub>nd</sub> <span>Prize</span>
+        </div>
         <div>as</div>
       </dib>
     </div>
