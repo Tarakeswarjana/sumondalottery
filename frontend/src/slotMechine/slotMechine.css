@@ -1,17 +1,58 @@
-.slotvalues{
-    font-size: 50px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.index-module_num__j6XH3{
-    font-size: 50px !important;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    border-left:5px solid rgb(77, 68, 68);
-    border-right:5px solid rgb(77, 68, 68);
-    color:white
+/* .slotvalues {
+  font-size: 50px;
+  padding-left: 5px;
+  padding-right: 5px;
+} */
+.index-module_slot__DpPgW {
+  font-size: 50px !important;
+  /* padding-left: 5px !important;
+  padding-right: 5px !important; */
+  border-left: 3px solid rgb(77, 68, 68);
+  border-right: 3px solid rgb(77, 68, 68);
+  font-weight: 500;
+  background-color: #fff;
 }
 
-.example-button{
-    color: white;
+.example-button {
+  color: white;
+}
+
+.index-module_slot_wrap__ZT-DX :nth-child(1) {
+  margin-left: 0;
+}
+.index-module_slot_wrap__ZT-DX :nth-child(2),
+.index-module_slot_wrap__ZT-DX :nth-child(3),
+.index-module_slot_wrap__ZT-DX :nth-child(4),
+.index-module_slot_wrap__ZT-DX :nth-child(5) {
+  margin-left: 10px;
+}
+.outer_div {
+  background: rgb(190, 188, 188);
+  box-shadow: -15px -15px -15px rgba(219, 63, 63, 0.2),
+    15px 15px 15px rgba(226, 61, 61, 0.1),
+    inset -5px -5px -5px rgba(201, 55, 55, 0.2),
+    inset 5px 5px 5px rgba(201, 54, 54, 0.1);
+}
+
+/*---------------------------*/
+.index-module_slot__DpPgW {
+  height: 45px;
+  /* width: auto;   */
+}
+
+.index-module_num__j6XH3 {
+  height: 45px;
+  line-height: 45px;
+  font-size: 35px;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+.digits_dot {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }

@@ -8,6 +8,11 @@ import CustomWheel2 from "../customwheel2/CustomWheel2";
 const Main = () => {
   const [count, setCount] = useState(10);
   const [status, setStatus] = useState(true);
+  console.log("status", count,status)
+  const [color, setColor] = useState(false);
+  const [createText, setCreateText] = useState(false);
+  const [fallingText, setfallingText] = useState(false);
+  const [blink, setBlink] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,15 +25,50 @@ const Main = () => {
           return 0;
         }
       });
+    }, 1500);
+
+    if (count === 0) {
+      const numberBlink = setTimeout(() => {
+        setBlink(true);
+      }, 1800);
+
+      const changeState = setTimeout(() => {
+        setStatus(false);
+      }, 1800);
+
+      return () => {
+        clearTimeout(numberBlink);
+        clearTimeout(changeState);
+      };
+    }
+
+    const textTyping = setTimeout(() => {
+      setCreateText(true);
     }, 1000);
 
-    return () => clearInterval(interval);
+    const fallingText = setTimeout(() => {
+      setfallingText(true);
+    }, 7000);
+
+    const changeColor = setTimeout(() => {
+      setColor(true);
+    }, 12500);
+
+    const Blink = setTimeout(() => {
+      setBlink(true);
+    }, 13000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(textTyping);
+      clearTimeout(fallingText);
+      clearTimeout(changeColor);
+      clearTimeout(Blink);
+    };
   }, []);
 
   // Format count to always display two digits
   const formattedCount = String(count).padStart(2, "0");
-
-  console.log(formattedCount, count > 0);
 
   return (
     <div className="main_div">
@@ -64,29 +104,55 @@ const Main = () => {
         </div>
         {status ? (
           <div className="w-9/12 border border-2 h-[100%] bg-black text-white p-8 text-center">
-            <div>
-              <h4 className="text-7xl font-extrabold">SINGAPORE LOTTERIES</h4>
-            </div>
-            <div>
-              <h4 className="text-9xl font-extrabold mt-8 mb-8">
-                <div className="word">
-                  <span>P</span>
-                  <span>X</span>
-                  <span>W</span>
-                  <span>E</span>
-                  <span>L</span>
-                  <span>L</span>
-                </div>
-              </h4>
-            </div>
+            {createText && (
+              <div className="typing_text">
+                <h4 className="text-7xl font-extrabold">SINGAPORE LOTTERIES</h4>
+              </div>
+            )}
+            {fallingText && (
+              <div>
+                <h4 className="text-9xl font-extrabold mt-8 mb-8">
+                  <div
+                    className={`word  ${color ? "colorChange" : ""} ${
+                      blink ? "blink" : ""
+                    }`}
+                  >
+                    <span>P</span>
+                    <span>X</span>
+                    <span>W</span>
+                    <span>E</span>
+                    <span>L</span>
+                    <span>L</span>
+                  </div>
+                </h4>
+              </div>
+            )}
             <div className="flex justify-center items-center mt-[220px]">
-              <div className="h-[81px] w-24 bg-white text-black text-7xl">00</div>
-              <div className="h-[81px] w-24 bg-white text-black text-7xl ml-2">{formattedCount}</div>
+              <div className={`h-[81px] w-24 bg-white text-black text-7xl `}>
+                <span
+                  className={`${
+                    formattedCount === "00" ? (blink ? "blink" : "") : ""
+                  }`}
+                >
+                  00
+                </span>
+              </div>
+              <div
+                className={`h-[81px] w-24 bg-white text-black text-7xl ml-2 `}
+              >
+                <span
+                  className={`${
+                    formattedCount === "00" ? (blink ? "blink" : "") : ""
+                  }`}
+                >
+                  {formattedCount}
+                </span>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="w-9/12 border border-2 h-[100%]">
-            <CustomWheel2 />
+          <div className="w-[74vw] border border-2 h-[74vh] overflow-hidden relative">
+            <CustomWheel2 no={25} letter={"a"} digits={98754} rotate={true} />
           </div>
         )}
 

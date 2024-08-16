@@ -1,13 +1,15 @@
 .circle {
   width: 202px;
   height: 202px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   position: relative;
   padding: 4px;
   margin: 1em auto;
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
+  background: #fff;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
 }
 .okk {
   width: 192px;
@@ -19,6 +21,19 @@
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
+  rotate: -8deg;
+}
+.letter_okk {
+  width: 192px;
+  height: 192px;
+  border: 1px solid red;
+  position: relative;
+  padding: 0;
+  margin: 0em auto;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+  rotate: -18deg;
 }
 
 li {
@@ -52,7 +67,7 @@ li {
   border-right: 10px solid transparent;
   border-top: 31px solid red;
   position: absolute;
-  left: 49%;
+  left: 46%;
   top: 2px;
   z-index: 1;
 }
@@ -63,14 +78,14 @@ li {
   border-right: 10px solid transparent;
   border-top: 31px solid red;
   position: absolute;
-  left: 49%;
+  left: 46%;
   top: 2px;
   z-index: 1;
 }
-hr {
+.circle_hr {
   height: 7px;
   width: 26px;
-  left: 48%;
+  left: 45%;
   position: absolute;
 }
 
@@ -118,15 +133,17 @@ hr {
 
 /* Letter Circle Rotation */
 .letter-circle {
-  width: 12em;
-  height: 12em;
-  border: 1px solid black;
+  /* width: 12em;
+  height: 12em; */
+  width: 202px;
+  height: 202px;
   position: relative;
-  padding: 0;
+  padding: 4px;
   margin: 1em auto;
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
+  background: #fff;
 }
 
 .letter-circle li {
@@ -160,4 +177,51 @@ hr {
 .zoom {
   transform: scale(1.5); /* Adjust scale as needed */
   transition: transform 1s ease-in-out; /* Smooth transition */
+}
+
+
+.main-container {
+  /* transition: transform 2s ease, overflow 0s 8s; */
+  overflow: hidden;
+}
+
+/* customwheel2.css */
+
+.zoomed {
+  transform: scale(3.5);
+  transform-origin: top left;
+  /* transition: transform 2s ease-in-out; */
+  transition: transform 2s ease-out;
+  margin-right: 224px;
+}
+
+.scroll-container {
+  overflow: hidden;
+  height: 100%; /* Adjust as needed */
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-section,
+.letter-section,
+.slot-section {
+  height: 100%;
+}
+
+.scroll-section {
+  transform: translateY(-100%);
+  transition: transform 2s ease-in-out;
+}
+
+.scroll-section.scroll-to-letters {
+  transform: translateY(-200%);
+}
+
+.scroll-section.scroll-to-slot {
+  transform: translateY(-300%);
 }
