@@ -1,19 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import Spinner from './Coponents/Spinner';
-import Wheel from './CustomSpinner/Wheel';
-import TestWheel from './TestWheel/TestWheel';
-import CustomWheel2 from './customwheel2/CustomWheel2';
+import "./customwheel2/customwhell2.css"
+import "./slotMechine/slotMechine.css"
 import Main from './first/Main';
 
 
-const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P", "I", "W"];
+
 function App() {
   return (
     <div className="App">
-
-      <Main />
-
+      <Main/>
     </div>
   );
 }
