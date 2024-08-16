@@ -17,7 +17,7 @@ function put(endpoint, params) {
 }
 
 function deletemethod(endpoint, params) {
-    return requestData(endpoint, params, "DELETE");
+    return requestData(endpoint, params, "POST");
 }
 
 async function requestData(url, data = {}, method = "GET") {

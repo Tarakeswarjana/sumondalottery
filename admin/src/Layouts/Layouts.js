@@ -2,9 +2,18 @@ import React from 'react'
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import Header from '../Components/Header/Header';
+import Login from '../Auth/Login';
 
 
 function Layout(props) {
+
+    let tokenndata = localStorage.getItem('token')
+    console.log(tokenndata, "iiiiuiui")
+    if (!tokenndata)
+        return <Login />
+
+
+
     return (
         <div className="dark:bg-meta-4 dark:text-white">
             <div className="flex h-screen overflow-hidden">

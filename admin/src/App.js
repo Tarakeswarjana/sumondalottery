@@ -14,9 +14,9 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<DashBoard />}></Route>
-          <Route path='/category' element={<Category />} />
-          <Route path='/subcategory' element={< SubCategory />} />
-          <Route path='/services' element={< Services />} />
+          <Route path='/morning' element={<Category gameTime={"Morning"} />} />
+          <Route path='/noon' element={<Category gameTime={"Noon"} />} />
+          <Route path='/evening' element={<Category gameTime={"Evening"} />} />
         </Route>
         <Route path='/login' element={< Login />} />
 

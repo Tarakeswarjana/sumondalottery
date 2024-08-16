@@ -2,8 +2,8 @@ import HttpClient from "./HttpClient";
 
 //login
 const Loginfunc = async (data) => {
-    let endpoint = "login"
-    return await HttpClient.post(endpoint, data);
+    let endpoint = `/login.php?email=${data.email}&password=${data.password}`
+    return await HttpClient.get(endpoint, data);
 }
 
 
@@ -25,7 +25,7 @@ const UpdateCategory = async (id, data) => {
 }
 
 const deleteCategory = async (id) => {
-    let endpoint = `category/${id}`
+    let endpoint = `/delete_result.php?id=${id}`
     return await HttpClient.deletemethod(endpoint);
 }
 

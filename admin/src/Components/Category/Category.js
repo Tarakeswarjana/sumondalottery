@@ -17,7 +17,7 @@ const initialState = {
 
 }
 
-function Category() {
+function Category({ gameTime }) {
     const [fromdata, setfromdata] = useState(initialState)
     const [isEdit, setisEdit] = useState(false)
     const [editableId, setEditableId] = useState(null)
@@ -49,9 +49,14 @@ function Category() {
             name: 'Result_value',
             selector: row => row.result_value,
         },
+
         {
-            name: 'Type',
-            selector: row => row.type,
+            name: 'First Digit',
+            selector: row => row.first_digit,
+        },
+        {
+            name: 'Second Digit',
+            selector: row => row.second_digit,
         },
 
         {
@@ -59,11 +64,11 @@ function Category() {
             selector: row => {
                 return (
                     <div className='w-[300px]'>
-                        <button onClick={() => {
+                        {/* <button onClick={() => {
                             handleEdit(row.sl)
                         }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Edit
-                        </button>
+                        </button> */}
                         <button onClick={() => {
 
                             handleDelete(row.sl)
@@ -86,16 +91,36 @@ function Category() {
     //ValidationFunction
 
     const handleValidation = () => {
+
         if (!fromdata.DrawNo) {
-            toast.error("Enter Category Name")
+            toast.error("Enter DrawNo")
             return false
         }
         if (!fromdata.preDigit) {
-            toast.error("Enter type")
+            toast.error("Enter PreDigit")
             return false
+        } else {
+            if (fromdata.preDigit >= 30 && fromdata.preDigit <= 45) {
+                return true
+            } else {
+                return false
+            }
         }
-        if (!fromdata.status) {
-            toast.error("Enter status")
+
+        if (!fromdata.series) {
+            toast.error("Enter Series")
+            return false
+        } else {
+            if (fromdata.series === "A" || fromdata.series === "B" || fromdata.series === "C" || fromdata.series === "D" || fromdata.series === "E" || fromdata.series === "G" || fromdata.series === "H" || fromdata.series === "J" || fromdata.series === "K" || fromdata.series === "L") {
+                return true
+            } else {
+                return false
+                toast.error("Only (A,B,C,D,E,G,H,J,K,L) can be entered")
+            }
+
+        }
+        if (!fromdata.firstPrize) {
+            toast.error("Enter FirstPrize")
             return false
         }
 
@@ -103,67 +128,33 @@ function Category() {
     }
 
     const handleSubmit = async () => {
-        // if (!handleValidation())
-        //     return;
-
-
-        const paramsobj = {
-            gameTime: 'Morning',
-            drawno: 55,
-            firstPrize: 7841,
-            predigit: 41,
-            seriesNo: 'A'
-        }
-
-        let res = await addCategory(paramsobj)
-        if (res) {
-            console.log(res, "lll")
-            toast.success("Category Added sucsessfully")
-            setfromdata(initialState);
-            setisModal(false)
-            fetchAllCategory(1)
-        }
-
-    }
-
-
-    const handleEdit = async (id) => {
-        setEditableId(id)
-        let res = await fetchSingleCategoryById(id)
-        if (res && res.success) {
-            console.log(res)
-            const obj1 = {
-                categoryName: res.data?.name,
-                type: res.data?.description,
-                position: res.data?.order,
-                status: res.data?.isActive == 1 ? "true" : "false",
-            };
-            setfromdata(obj1)
-            setisModal(true)
-            setisEdit(true)
-        }
-    }
-
-    const handleUpdate = async () => {
         if (!handleValidation())
             return;
-        const editObj = {
-            name: fromdata.DrawNo,
-            description: fromdata.preDigit,
-            order: fromdata.series,
-            isActive: fromdata.status === "true" ? 1 : 0,
-        };
-        console.log(fromdata, "update888")
-        alert("no")
-        const res = await UpdateCategory(editableId, editObj)
-        console.log(res, "6678")
-        if (res && res.success) {
+        try {
 
-            toast.success(res.message)
-            fetchAllCategory(1)
-            setisModal(false)
+            const paramsobj = {
+                gameTime: gameTime,
+                drawno: fromdata.DrawNo,
+                firstPrize: fromdata.firstPrize,
+                predigit: fromdata.preDigit,
+                seriesNo: fromdata.series
+            }
+
+            console.log("iiiiiii00000", paramsobj)
+            let res = await addCategory(paramsobj)
+            if (res) {
+                console.log(res, "lll")
+                toast.success("Data Added sucsessfully")
+                setfromdata(initialState);
+                setisModal(false)
+                fetchAllCategory()
+            }
+        } catch (err) {
+            console.log(err)
         }
     }
+
+
 
     const handleDelete = async (id) => {
 
@@ -180,8 +171,8 @@ function Category() {
 
                 (async () => {
                     let res = await deleteCategory(id)
-                    if (res && res.success) {
-                        fetchAllCategory(1)
+                    if (res && res.status) {
+                        fetchAllCategory()
                         toast.success(res.message)
                     }
                 })();
@@ -195,56 +186,55 @@ function Category() {
     }
 
 
-    //fetching Category  
-
-    const fetchAllCategory = async (page) => {
-        let dataToSend = {
-            // input_date: '2024-08-13',
-            game_time: 'Morning'
-        }
 
 
-        setisLoading(true)
-        const res = await viewAllCategory(dataToSend)
-
-        console.log(typeof (res), "uuu")
-
-        // setTotalRow(res.total)
+    const fetchAllCategory = async () => {
+        try {
 
 
-
-        if (res) {
-            // console.log(JSON.stringify(res.data), "iiiiiiiiii")
-            let rdata = res.data
-            let newArr = []
-            for (let ele in rdata) {
-
-                let obj = {
-                    sl: ele,
-                    game_date: rdata[ele]?.game_date,
-                    game_name: rdata[ele]?.game_name,
-                    result_value: rdata[ele]?.result_value,
-                    type: rdata[ele]?.type,
-                    id: rdata[ele]?.id
-
-                }
-                newArr.push(obj)
-
-
+            let dataToSend = {
+                // input_date: '2024-08-13',
+                game_time: gameTime
             }
 
-            console.log(newArr, "466666")
-            setCategoryData(newArr)
-            setisLoading(false)
 
+            setisLoading(true)
+            const res = await viewAllCategory(dataToSend)
+
+            if (res) {
+                const newArr =
+                    res.map((ele, id) => {
+                        console.log(ele, "rrrrtttt")
+                        return (
+                            {
+                                sl: id + 1,
+                                game_date: ele?.game_date,
+                                game_name: ele?.game_name,
+                                result_value: ele?.result_value,
+                                first_digit: ele?.first_digit,
+                                second_digit: ele.second_digit,
+
+                                type: ele?.type,
+                                id: ele?.sl_no
+
+                            }
+                        )
+
+                    })
+
+                setCategoryData(newArr)
+                setisLoading(false)
+
+            }
+        } catch (err) {
+            console.log(err)
         }
-
 
 
     }
 
     useEffect(() => {
-        fetchAllCategory(1)
+        fetchAllCategory()
     }, [])
 
 
@@ -284,12 +274,12 @@ function Category() {
             {
                 isModal &&
                 <div className='modelcss'>
-                    <span>Set Golden Result Morning</span>
+                    <span>Set Golden Result {gameTime} </span>
                     <span onClick={() => { setisModal(false) }} className='float-right cursor-pointer text-red-400'>Close</span>
                     <form class="max-w-[54rem]  mx-auto m-t-[4rem] ">
                         <div class="mb-5">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game Name</label>
-                            <input type="email" id="email" disabled="true" name='categoryName' value={"Morning"} placeholder='Morning' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                            <input type="email" id="email" disabled="true" name='categoryName' value={gameTime} placeholder='Morning' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
                         </div>
 
                         <div class="mb-5">
@@ -302,7 +292,7 @@ function Category() {
 
                                 handleChange(e);
 
-                            }} name='type' value={fromdata.preDigit} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                            }} name='preDigit' value={fromdata.preDigit} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
                         </div>
                         <div class="mb-5">
                             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SERIES(A,B,C,D,E,G,H,J,K,L)</label>
@@ -319,10 +309,8 @@ function Category() {
 
                         <button type="submit" onClick={(e) => {
                             e.preventDefault();
-                            if (isEdit)
-                                handleUpdate()
-                            else
-                                handleSubmit()
+
+                            handleSubmit()
 
                         }} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative float-right">{isEdit ? "Edit" : "Add"}</button>
                     </form>
