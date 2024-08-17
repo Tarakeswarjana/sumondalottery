@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import "./customwhell2.css";
 import SlotMechine from "../slotMechine/SlotMechine";
 import SecoundPrizeHome from "../SecoundPrize/SecoundPrizeHome";
+import logo from "../images/logo/25.png";
 const audio = require("../../src/assets/bicycle-wheel-spinning-49716-[AudioTrimmer.com].mp3");
 
-function CustomWheel2({ no, letter, digits, rotate }) {
+function CustomWheel2({ no, letter, digits, rotate, setLiveDraw }) {
   const [rotationAngleNumber, setRotationAngleNumber] = useState(0);
   const [rotationAngleLetter, setRotationAngleLetter] = useState(0);
   const [inputValueNumber, setInputValueNumber] = useState("");
@@ -41,7 +42,7 @@ function CustomWheel2({ no, letter, digits, rotate }) {
 
     const changeState = setTimeout(() => {
       setStatus(false);
-    }, 19000);
+    }, 24000);
 
     return () => {
       clearTimeout(zoomTimer);
@@ -52,10 +53,9 @@ function CustomWheel2({ no, letter, digits, rotate }) {
   }, [no, letter, digits]);
 
   const numbers = [
-    10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-    29, 30, 31, 32, 33,
+    30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,
   ];
-  const letters = ["A", "B", "C", "D", "G", "M", "N", "O", "P"];
+  const letters = ["A", "B", "C", "D", "E", "G", "H", "J", "K", "L"];
 
   const degree = 360 / numbers.length;
   const alphabetDeg = 360 / letters.length;
@@ -101,14 +101,13 @@ function CustomWheel2({ no, letter, digits, rotate }) {
         numberWheelStyle.transition = `none`;
         letterWheelStyle.transition = `none`;
         // audio1.pause();
-      }, 15000); // 10 seconds
+      }, 15000); // 15 seconds
     } else {
       alert(
-        "Please enter a valid number (10-33) and letter (A, B, C, D, G, M, N, O, P)"
+        "Please enter a valid number (30-45) and letter (A, B, C, D, E, G, H, J, K, L)"
       );
     }
   };
-
   useEffect(() => {
     if (rotate && inputValueNumber && inputValueLetter) {
       handleRotate();
@@ -131,10 +130,12 @@ function CustomWheel2({ no, letter, digits, rotate }) {
             >
               <div className="okk">
                 {numbers.map((numb, i) => {
-                  const rotateDegree = degree * i;
+                  const rotateDegree = degree * i + 8;
+                  console.log("56565", rotateDegree, degree);
                   return (
                     <li
                       key={i}
+                      className="wheel_li"
                       style={{
                         transform: `rotate(${rotateDegree}deg) skewY(-60deg)`,
                       }}
@@ -145,6 +146,9 @@ function CustomWheel2({ no, letter, digits, rotate }) {
                         spellCheck="false"
                       >
                         {numb}
+                      </div>
+                      <div className="logo_container">
+                        <img src={logo} alt="logo" className="logo" />
                       </div>
                     </li>
                   );
@@ -169,6 +173,7 @@ function CustomWheel2({ no, letter, digits, rotate }) {
                   return (
                     <li
                       key={i}
+                      className="wheel_li"
                       style={{
                         transform: `rotate(${rotateDegree}deg) skewY(-60deg)`,
                       }}
@@ -190,7 +195,7 @@ function CustomWheel2({ no, letter, digits, rotate }) {
         <div className="w-[35px] h-full bg-black ml-[-20px] z-10"></div>
 
         <div className="bg-black h-auto w-2/3 border-l-2" ref={digitsRef}>
-          <SlotMechine duration={2} endNumbers={endval} setvalueStart rotate />
+          <SlotMechine duration={15} endNumbers={endval} setvalueStart rotate />
         </div>
       </div>
 
@@ -199,14 +204,14 @@ function CustomWheel2({ no, letter, digits, rotate }) {
           type="number"
           value={inputValueNumber}
           onChange={(e) => setInputValueNumber(e.target.value)}
-          placeholder="Enter number (1-12)"
+          placeholder="Enter number (30-45)"
           className="input-field"
         />
         <input
           type="text"
           value={inputValueLetter}
           onChange={(e) => setInputValueLetter(e.target.value)}
-          placeholder="Enter letter (A, B, C, D, G, M, N, O, P)"
+          placeholder="Enter letter (A, B, C, D, E, G, H, J, K, L)"
           className="input-field"
         />
         <button className="spin-button" onClick={handleRotate}>
@@ -215,7 +220,7 @@ function CustomWheel2({ no, letter, digits, rotate }) {
       </div>
     </div>
   ) : (
-    <SecoundPrizeHome />
+    <SecoundPrizeHome setLiveDraw={setLiveDraw} />
   );
 }
 

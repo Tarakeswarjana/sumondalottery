@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SecoundPrizeResult from "./SecoundPrizeResult";
+import ThirdPrizeResult from "./ThirdPrizeResult";
 
-const SecoundPrizeHome = ({setLiveDraw}) => {
+const ThirdPrizeHome = ({setLiveDraw}) => {
   const [textType, setTextType] = useState(false);
   const [textFall, setTextFall] = useState(false);
   const [showLine, setShowLine] = useState(false);
@@ -31,7 +31,7 @@ const SecoundPrizeHome = ({setLiveDraw}) => {
     }, 6500);
 
     const changeStatus = setTimeout(() => {
-      setStatus(false)
+      setStatus(false);
     }, 15000);
 
     return () => {
@@ -43,10 +43,9 @@ const SecoundPrizeHome = ({setLiveDraw}) => {
       clearTimeout(changeStatus);
     };
   }, []);
-
   return status ? (
     <div className="bg-black fixed inset-0">
-      <dib className="flex flex-col w-[52%] h-[100vh] mx-auto text-center">
+      <div className="flex flex-col  w-[52%] h-[100vh] mx-auto text-center">
         <div className="typing_text_2_main_div">
           <ul className={textType ? "dynamik_text2" : "hidden"}>
             <li>
@@ -59,8 +58,8 @@ const SecoundPrizeHome = ({setLiveDraw}) => {
           <span>LIVE NEXT DRAW</span>
         </div>
         <div className={`secoundPrizeNo ${blink ? "blink" : "hidden"}`}>
-          <span className="number">2</span>
-          <span className="nd">nd</span> <span>Prize</span>
+          <span className="number">3</span>
+          <span className="nd">rd</span> <span>Prize</span>
         </div>
         <div className="bottom_text">
           <ul className={bottomText ? "dynamik_text_bottom" : "hidden"}>
@@ -69,11 +68,11 @@ const SecoundPrizeHome = ({setLiveDraw}) => {
             </li>
           </ul>
         </div>
-      </dib>
+      </div>
     </div>
   ) : (
-    <SecoundPrizeResult setLiveDraw={setLiveDraw}  />
+    <ThirdPrizeResult setLiveDraw={setLiveDraw} />
   )
 };
 
-export default SecoundPrizeHome;
+export default ThirdPrizeHome;

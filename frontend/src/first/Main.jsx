@@ -8,11 +8,12 @@ import CustomWheel2 from "../customwheel2/CustomWheel2";
 const Main = () => {
   const [count, setCount] = useState(10);
   const [status, setStatus] = useState(true);
-  console.log("status", count,status)
+  console.log("status", count, status);
   const [color, setColor] = useState(false);
-  const [createText, setCreateText] = useState(false);
   const [fallingText, setfallingText] = useState(false);
   const [blink, setBlink] = useState(false);
+  const [liveDraw, setLiveDraw] = useState(false);
+  console.log("liveDraw", liveDraw);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,7 +26,8 @@ const Main = () => {
           return 0;
         }
       });
-    }, 1500);
+    }, 15000000);
+    // }, 1500);
 
     if (count === 0) {
       const numberBlink = setTimeout(() => {
@@ -42,10 +44,6 @@ const Main = () => {
       };
     }
 
-    const textTyping = setTimeout(() => {
-      setCreateText(true);
-    }, 1000);
-
     const fallingText = setTimeout(() => {
       setfallingText(true);
     }, 7000);
@@ -60,7 +58,6 @@ const Main = () => {
 
     return () => {
       clearInterval(interval);
-      clearTimeout(textTyping);
       clearTimeout(fallingText);
       clearTimeout(changeColor);
       clearTimeout(Blink);
@@ -102,13 +99,29 @@ const Main = () => {
             <p className="pxwell font-extrabold">L</p>
           </div>
         </div>
+        {liveDraw && (
+          <div className="w-[50px] h-[100%] flex justify-between items-center mr-2 ml-8">
+            <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold">
+              <p className="pxwell font-extrabold">L</p>
+              <p className="pxwell font-extrabold">I</p>
+              <p className="pxwell font-extrabold">V</p>
+              <p className="pxwell font-extrabold">E</p>
+              <p className="pxwell font-extrabold">D</p>
+              <p className="pxwell font-extrabold">R</p>
+              <p className="pxwell font-extrabold">A</p>
+              <p className="pxwell font-extrabold">W</p>
+            </div>
+          </div>
+        )}
         {status ? (
-          <div className="w-9/12 border border-2 h-[100%] bg-black text-white p-8 text-center">
-            {createText && (
-              <div className="typing_text">
-                <h4 className="text-7xl font-extrabold">SINGAPORE LOTTERIES</h4>
-              </div>
-            )}
+          <div className="w-9/12 border border-2 h-[100%] bg-black text-white p-8 text-center overflow-hidden">
+            <div className="typing_text_main_div">
+              <ul className="dynamik_text">
+                <li>
+                  <span>SINGAPORE LOTTERIES</span>
+                </li>
+              </ul>
+            </div>
             {fallingText && (
               <div>
                 <h4 className="text-9xl font-extrabold mt-8 mb-8">
@@ -152,7 +165,13 @@ const Main = () => {
           </div>
         ) : (
           <div className="w-[74vw] border border-2 h-[74vh] overflow-hidden relative">
-            <CustomWheel2 no={25} letter={"a"} digits={98754} rotate={true} />
+            <CustomWheel2
+              no={39}
+              letter={"j"}
+              digits={61754}
+              rotate={true}
+              setLiveDraw={setLiveDraw}
+            />
           </div>
         )}
 

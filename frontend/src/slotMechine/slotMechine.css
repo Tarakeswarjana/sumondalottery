@@ -11,6 +11,7 @@
   border-right: 3px solid rgb(77, 68, 68);
   font-weight: 500;
   background-color: #fff;
+  height: 32px;
 }
 
 .example-button {
@@ -36,18 +37,20 @@
 
 /*---------------------------*/
 .index-module_slot__DpPgW {
-  height: 45px;
+  /* height: 45px; */
+  height: 30px !important;
   /* width: auto;   */
 }
 
 .index-module_num__j6XH3 {
-  height: 45px;
-  line-height: 45px;
+  /* height: 45px; */
+  height: 30px;
+  line-height: 30px;
   font-size: 35px;
 }
 .dot {
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   background-color: black;
 }
@@ -55,4 +58,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  height: 10px;
+  font-size: 8px;
 }
