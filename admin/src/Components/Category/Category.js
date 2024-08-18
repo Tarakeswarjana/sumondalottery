@@ -64,16 +64,17 @@ function Category({ gameTime }) {
             selector: row => {
                 return (
                     <div className='w-[300px]'>
-                        {/* <button onClick={() => {
-                            handleEdit(row.sl)
-                        }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Edit
-                        </button> */}
+
                         <button onClick={() => {
 
-                            handleDelete(row.sl)
+                            handleDelete(row.id)
                         }} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
                             Delete
+                        </button>
+                        <button onClick={() => {
+                            // handleEdit(row.sl)
+                        }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            View
                         </button>
                     </div>)
 
@@ -99,10 +100,14 @@ function Category({ gameTime }) {
         if (!fromdata.preDigit) {
             toast.error("Enter PreDigit")
             return false
-        } else {
+        }
+
+        if (fromdata.preDigit) {
             if (fromdata.preDigit >= 30 && fromdata.preDigit <= 45) {
+
                 return true
             } else {
+                toast.error("Enter PreDigit between 30 to 45")
                 return false
             }
         }
@@ -110,12 +115,17 @@ function Category({ gameTime }) {
         if (!fromdata.series) {
             toast.error("Enter Series")
             return false
-        } else {
-            if (fromdata.series === "A" || fromdata.series === "B" || fromdata.series === "C" || fromdata.series === "D" || fromdata.series === "E" || fromdata.series === "G" || fromdata.series === "H" || fromdata.series === "J" || fromdata.series === "K" || fromdata.series === "L") {
+        }
+
+        if (fromdata.series) {
+            console.log(fromdata.series, "ooo")
+            const seirs = fromdata.series.toUpperCase()
+            if (seirs === "A" || seirs === "B" || seirs === "C" || seirs === "D" || seirs === "E" || seirs === "G" || seirs === "H" || seirs === "J" || seirs === "K" || seirs === "L") {
                 return true
             } else {
-                return false
                 toast.error("Only (A,B,C,D,E,G,H,J,K,L) can be entered")
+
+                return false
             }
 
         }
@@ -123,31 +133,71 @@ function Category({ gameTime }) {
             toast.error("Enter FirstPrize")
             return false
         }
+        if (!fromdata.firstPrize.length === 5) {
+            toast.error("Enter 5digit FirstPrize")
+            return false
+        }
 
         return true
     }
 
+    function getRandomDateIn2022() {
+        // Start and end dates for 2022
+        const startOf2022 = new Date('2022-01-01T00:00:00Z');
+        const endOf2022 = new Date('2022-12-31T23:59:59Z');
+
+        // Generate a random timestamp within the range
+        const randomTimestamp = startOf2022.getTime() + Math.random() * (endOf2022.getTime() - startOf2022.getTime());
+
+        // Create a new Date object with the random timestamp
+        return new Date(randomTimestamp);
+    }
+
+    function getCurrentDateFormatted() {
+        // Get the current date
+        // const now = new Date();
+        const now = getRandomDateIn2022()
+
+        // Extract day, month, and year
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const year = now.getFullYear();
+
+        // Format the date as 'dd-mm-yyyy'
+        const formattedDate = `${day}-${month}-${year}`;
+        console.log(formattedDate, "iii")
+        return formattedDate;
+    }
+
+
     const handleSubmit = async () => {
+        const currentDate = getCurrentDateFormatted()
         if (!handleValidation())
             return;
         try {
+
 
             const paramsobj = {
                 gameTime: gameTime,
                 drawno: fromdata.DrawNo,
                 firstPrize: fromdata.firstPrize,
                 predigit: fromdata.preDigit,
-                seriesNo: fromdata.series
+                seriesNo: fromdata.series.toUpperCase(),
+                currentDate: currentDate
             }
 
             console.log("iiiiiii00000", paramsobj)
             let res = await addCategory(paramsobj)
-            if (res) {
+            if (res && res === 1) {
                 console.log(res, "lll")
                 toast.success("Data Added sucsessfully")
                 setfromdata(initialState);
                 setisModal(false)
                 fetchAllCategory()
+            } else {
+                if (res === 3) {
+                    toast.error("Data Already Exist")
+                }
             }
         } catch (err) {
             console.log(err)
@@ -192,14 +242,14 @@ function Category({ gameTime }) {
         try {
 
 
-            let dataToSend = {
-                // input_date: '2024-08-13',
-                game_time: gameTime
-            }
+            // let dataToSend = {
+            //     // input_date: '2024-08-13',
+            //     game_time: gameTime
+            // }
 
 
             setisLoading(true)
-            const res = await viewAllCategory(dataToSend)
+            const res = await viewAllCategory(gameTime)
 
             if (res) {
                 const newArr =
@@ -215,7 +265,7 @@ function Category({ gameTime }) {
                                 second_digit: ele.second_digit,
 
                                 type: ele?.type,
-                                id: ele?.sl_no
+                                id: ele?.id
 
                             }
                         )
@@ -259,14 +309,12 @@ function Category({ gameTime }) {
                     data={categorydata}
                     pagination
 
-                    progressPending={isLoading}
+                // progressPending={isLoading}
 
-                    paginationServer
-                    paginationTotalRows={totalrowCount}
-                    onChangePage={fetchAllCategory}
-                    noRowsPerPage={true}
-
-
+                // paginationServer
+                // paginationTotalRows={totalrowCount}
+                // onChangePage={fetchAllCategory}
+                // noRowsPerPage={true}
                 />
             </div>
 
@@ -296,7 +344,7 @@ function Category({ gameTime }) {
                         </div>
                         <div class="mb-5">
                             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SERIES(A,B,C,D,E,G,H,J,K,L)</label>
-                            <input type="text" id="repeat-password" onChange={handleChange} name="series" value={fromdata.series} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                            <input type="text" id="repeat-password" onChange={handleChange} name="series" value={fromdata.series.toUpperCase()} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
                         </div>
                         <div class="mb-5">
                             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Prize</label>

@@ -10,8 +10,8 @@ const Loginfunc = async (data) => {
 
 //category
 const addCategory = async (obj) => {
-    const { gameTime, drawno, firstPrize, predigit, seriesNo } = obj
-    let endpoint = `/result_insert.php?game_name=${gameTime}&draw_number=${drawno}&first_prize=${firstPrize}&pre_digit=${predigit}&series_no=${seriesNo}&cur_date=15/03/2022`
+    const { gameTime, drawno, firstPrize, predigit, seriesNo, currentDate } = obj
+    let endpoint = `/result_insert.php?game_name=${gameTime}&draw_number=${drawno}&first_prize=${firstPrize}&pre_digit=${predigit}&series_no=${seriesNo}&cur_date=${currentDate}`
     return await HttpClient.post(endpoint);
 
 }
@@ -29,15 +29,14 @@ const deleteCategory = async (id) => {
     return await HttpClient.deletemethod(endpoint);
 }
 
-const viewAllCategory = async (dataToSend) => {
+const viewAllCategory = async (gameTime) => {
 
-    let endpoint = '/fetch_result.php?game_name=Morning'
+    let endpoint = `/fetch_result.php?game_name=${gameTime}`
     // let dataToSend = {
     //     input_date: '2024-08-11',
     //     game_time: 'Morning'
     // }
-
-    console.log(await HttpClient.get(endpoint, dataToSend), "iioooo")
+    const dataToSend = {}
 
     return await HttpClient.post(endpoint, dataToSend);
 
