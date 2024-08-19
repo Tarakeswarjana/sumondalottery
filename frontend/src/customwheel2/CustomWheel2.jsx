@@ -115,11 +115,11 @@ function CustomWheel2({ no, letter, digits, rotate, setLiveDraw }) {
   }, [rotate, inputValueNumber, inputValueLetter]);
 
   return status ? (
-    <div className={`${zoomed ? "zoomed" : ""} h-full relative`}>
-      <div className="flex h-full overflow-hidden">
-        <div className="w-1/3 h-full bg-gray-300 flex flex-col justify-between">
+    <div className={`${zoomed ? "zoomed" : ""} h-full relative wheel_main`}>
+      <div className="flex h-full overflow-hidden wheel_second_main">
+        <div className="w-1/3 h-full bg-gray-300 flex flex-col justify-between main_spin">
           <div className="relative">
-            <div className="w-full h-1 bg-white">
+            <div className="w-full h-1 bg-white spin_top_line">
               <hr className="h-1.5 border border-2 border-black overflow-auto circle_hr" />
             </div>
             <div className="arrow"></div>
@@ -158,7 +158,7 @@ function CustomWheel2({ no, letter, digits, rotate, setLiveDraw }) {
           </div>
 
           <div className="relative" ref={letterWheelRef}>
-            <div className="w-full h-1 bg-white z-20">
+            <div className="w-full h-1 bg-white z-20 spin_top_line">
               <hr className="h-1.5 border border-2 border-black overflow-auto circle_hr" />
             </div>
             <div className="letter_Arrow"></div>
@@ -192,14 +192,14 @@ function CustomWheel2({ no, letter, digits, rotate, setLiveDraw }) {
             </ul>
           </div>
         </div>
-        <div className="w-[35px] h-full bg-black ml-[-20px] z-10"></div>
+        <div className="w-[35px] h-full bg-black ml-[-20px] z-10 black_border"></div>
 
-        <div className="bg-black h-auto w-2/3 border-l-2" ref={digitsRef}>
+        <div className="bg-black h-auto w-2/3 border-l-2 slot_component" ref={digitsRef} >
           <SlotMechine duration={15} endNumbers={endval} setvalueStart rotate />
         </div>
       </div>
 
-      <div className="inputs">
+      <div className="inputs hidden">
         <input
           type="number"
           value={inputValueNumber}

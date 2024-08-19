@@ -48,7 +48,7 @@ const SlotMechine = ({ duration, endNumbers, rotate }) => {
   return (
     <>
       <div className="w-full h-1 bg-white"></div>
-      <div className="h-[75px] w-[290px] bg-white flex flex-col justify-center item-center">
+      <div className="h-[75px] w-[290px] bg-white flex flex-col justify-center item-center main_slot">
         <div className="digits_dot">
           <hr className="dot" />
           <span>PXWELL</span>

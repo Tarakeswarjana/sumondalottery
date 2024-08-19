@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Main.css";
 import middle from "../images/MIDDLE.png";
 import first from "../images/first.png";
-import logo from "../images/logo.jpg";
+import logo from "../images/logo/logo.png";
 import CustomWheel2 from "../customwheel2/CustomWheel2";
 
 const Main = () => {
@@ -26,7 +25,7 @@ const Main = () => {
           return 0;
         }
       });
-    }, 15000000);
+    }, 200);
     // }, 1500);
 
     if (count === 0) {
@@ -72,7 +71,7 @@ const Main = () => {
       {/* top */}
       <div className="flex justify-around pt-4">
         <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-72 h-[56px]">
-          <p className="w-full text-center bg-yellow-400 text-black rounded rounded-full font-bold">
+          <p className="w-full text-center bg-yellow-400 text-black rounded rounded-full font-bold top_left">
             PLAY LIVE DRAW ON <span className="text-red-700">YOUTUBE</span>{" "}
             <br />
             SINGAPORE LOTTERIES{" "}
@@ -82,15 +81,15 @@ const Main = () => {
           <img className="lottery" src={middle} alt="middle" />
         </div>
         <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-56 h-[56px]">
-          <p className="w-full flex justify-center items-center bg-yellow-400 text-black rounded rounded-full font-bold">
+          <p className="w-full flex justify-center items-center bg-yellow-400 text-black rounded rounded-full font-bold top_right">
             LIVE FROM SINGAPORE
           </p>
         </div>
       </div>
       {/* middle */}
-      <div className="mt-4 w-[96%] h-[73%] mx-auto flex justify-between ">
-        <div className="w-[50px] h-[100%] flex justify-between items-center mr-2 ">
-          <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold">
+      <div className="mt-4 w-[96%] h-[73%] mx-auto flex justify-between main_middle">
+        <div className="w-[50px] h-[100%] flex justify-between items-center mr-2 pxwell_main_parent">
+          <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold pxwell_main">
             <p className="pxwell font-extrabold">P</p>
             <p className="pxwell font-extrabold">X</p>
             <p className="pxwell font-extrabold">W</p>
@@ -101,7 +100,7 @@ const Main = () => {
         </div>
         {liveDraw && (
           <div className="w-[50px] h-[100%] flex justify-between items-center mr-2 ml-8">
-            <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold">
+            <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold ">
               <p className="pxwell font-extrabold">L</p>
               <p className="pxwell font-extrabold">I</p>
               <p className="pxwell font-extrabold">V</p>
@@ -114,7 +113,7 @@ const Main = () => {
           </div>
         )}
         {status ? (
-          <div className="w-9/12 border border-2 h-[100%] bg-black text-white p-8 text-center overflow-hidden">
+          <div className="w-9/12 border border-2 h-[100%] bg-black text-white p-8 text-center overflow-hidden middle_text_area">
             <div className="typing_text_main_div">
               <ul className="dynamik_text">
                 <li>
@@ -122,25 +121,25 @@ const Main = () => {
                 </li>
               </ul>
             </div>
-            {fallingText && (
-              <div>
-                <h4 className="text-9xl font-extrabold mt-8 mb-8">
-                  <div
-                    className={`word  ${color ? "colorChange" : ""} ${
-                      blink ? "blink" : ""
-                    }`}
-                  >
-                    <span>P</span>
-                    <span>X</span>
-                    <span>W</span>
-                    <span>E</span>
-                    <span>L</span>
-                    <span>L</span>
-                  </div>
-                </h4>
-              </div>
-            )}
-            <div className="flex justify-center items-center mt-[220px]">
+            {/* {fallingText && ( */}
+            <div className={`fall_blink_text `}>
+              <h4 className="text-9xl font-extrabold mt-8 mb-8 blink_text ">
+                <div
+                  className={`word  ${color ? "colorChange" : ""} ${
+                    blink ? "blink" : ""
+                  }  ${fallingText ? "block" : "hidden"}`}
+                >
+                  <span>P</span>
+                  <span>X</span>
+                  <span>W</span>
+                  <span>E</span>
+                  <span>L</span>
+                  <span>L</span>
+                </div>
+              </h4>
+            </div>
+            {/* )}  */}
+            <div className="flex justify-center items-center  number_main_div">
               <div className={`h-[81px] w-24 bg-white text-black text-7xl `}>
                 <span
                   className={`${
@@ -164,7 +163,7 @@ const Main = () => {
             </div>
           </div>
         ) : (
-          <div className="w-[74vw] border border-2 h-[74vh] overflow-hidden relative">
+          <div className="w-[74vw] border border-2 h-[74vh] overflow-hidden relative main_page_wheel">
             <CustomWheel2
               no={39}
               letter={"j"}
@@ -184,8 +183,8 @@ const Main = () => {
           <p className="prize font-bold text-3xl ">WITH</p>
           <p className="prize font-bold text-3xl ">SERIES</p>
         </div>
-        <div className="w-[50px] h-[100%] flex justify-between items-center ml-2 ">
-          <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold">
+        <div className="w-[50px] h-[100%] flex justify-between items-center ml-2 pxwell_main_parent">
+          <div className="w-full h-[90%] flex flex-col justify-evenly items-center text-black text-5xl rounded rounded-full font-bold pxwell_main">
             <p className="pxwell font-extrabold">P</p>
             <p className="pxwell font-extrabold">X</p>
             <p className="pxwell font-extrabold">W</p>
@@ -197,15 +196,15 @@ const Main = () => {
       </div>
       {/* bottom */}
       <div className="flex justify-around pt-4">
-        <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-64 h-12">
+        <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-64 h-12 draw_date_time">
           <p className="w-full flex justify-center items-center bg-red-700 text-white rounded rounded-full font-bold">
             DRAW DATE - 11.08.2024
           </p>
         </div>
         <div className="">
-          <img className="logo" src={logo} alt="middle" />
+          <img className="bottom_logo" src={logo} alt="middle" />
         </div>
-        <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-56 h-12">
+        <div className="pt-1 pb-1 flex justify-center align-center bg-black rounded rounded-full w-56 h-12 draw_date_time">
           <p className="w-full flex justify-center items-center bg-red-700 text-white rounded rounded-full font-bold">
             DRAW TIME - 10.00PM
           </p>
